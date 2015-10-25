@@ -100,7 +100,12 @@ public class JettySparkServer implements SparkServer {
 
         // Handle web socket routes
         if (webSocketServletContextHandler == null) {
-            server.setHandler(handler);
+            HandlerList handlers = new HandlerList();
+            for (Handler existingHandler : server.getHandlers()) {
+                handlers.addHandler(existingHandler);
+            }
+            handlers.addHandler(handler);
+            server.setHandler(handlers);
         } else {
             List<Handler> handlersInList = new ArrayList<>();
             handlersInList.add(handler);
