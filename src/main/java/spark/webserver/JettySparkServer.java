@@ -28,6 +28,7 @@ import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
+import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.slf4j.Logger;
@@ -102,7 +103,16 @@ public class JettySparkServer implements SparkServer {
         if (webSocketServletContextHandler == null) {
             HandlerList handlers = new HandlerList();
             for (Handler existingHandler : server.getHandlers()) {
-                handlers.addHandler(existingHandler);
+                // TODO: Make recursive so we can unwrap all collections no matter how deep down the tree...
+//                if (existingHandler instanceof HandlerCollection) {
+//                    HandlerCollection handlerCollection = (HandlerCollection) existingHandler;
+//                    for (Handler childHandler : handlerCollection.getHandlers()) {
+//                        handlers.addHandler(childHandler);
+//                    }
+//                } else {
+                    handlers.addHandler(existingHandler);
+//                }
+
             }
             handlers.addHandler(handler);
             server.setHandler(handlers);
