@@ -16,13 +16,23 @@
  */
 package spark.webserver.jetty;
 
+import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Creates Jetty Server instances.
  */
 public class JettyServerFactory {
+    private final static List<Handler> handlers = new ArrayList<>();
+
+    public static void addHandler(Handler handler) {
+        handlers.add(handler);
+    }
 
     /**
      * Creates a Jetty server.
@@ -43,6 +53,11 @@ public class JettyServerFactory {
         } else {
             server = new Server();
         }
+        HandlerList handlers = new HandlerList();
+        for (Handler handler : JettyServerFactory.handlers) {
+            handlers.addHandler(handler);
+        }
+        server.setHandler(handlers);
         return server;
     }
 
