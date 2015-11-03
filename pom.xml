@@ -11,7 +11,7 @@
     <packaging>bundle</packaging>
     <version>2.4-SNAPSHOT</version>
     <name>Spark</name>
-    <description>A Sinatra inspired java web framework</description>
+    <description>DD Forked version of Spark. A Sinatra inspired java web framework</description>
     <url>http://www.sparkjava.com</url>
     <licenses>
         <license>
@@ -21,12 +21,25 @@
         </license>
     </licenses>
     <scm>
-        <connection>scm:git:git@github.com:perwendel/spark.git</connection>
-        <developerConnection>scm:git:git@github.com:perwendel/spark.git</developerConnection>
-        <url>scm:git:git@github.com:perwendel/spark.git</url>
+        <connection>scm:git:git@github.com:Watje/spark.git</connection>
+        <developerConnection>scm:git:git@github.com:Watje/spark.git</developerConnection>
+        <url>scm:git:git@github.com:Watje/spark.git</url>
     </scm>
     <developers>
     </developers>
+
+    <distributionManagement>
+        <repository>
+            <id>cac76f8165e4</id>
+            <name>cac76f8165e4-releases</name>
+            <url>https://artifactory.doubledutch.me/artifactory/maven-local</url>
+        </repository>
+        <snapshotRepository>
+            <id>cac76f8165e4</id>
+            <name>cac76f8165e4-snapshots</name>
+            <url>https://artifactory.doubledutch.me/artifactory/maven-local</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <properties>
         <jetty.version>9.3.2.v20150730</jetty.version>
