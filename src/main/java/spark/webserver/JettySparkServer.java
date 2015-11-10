@@ -51,7 +51,7 @@ public class JettySparkServer implements SparkServer {
     private static final String NAME = "Spark";
 
     private Handler handler;
-    private Server server;
+    public static Server server;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
